@@ -43,7 +43,9 @@ namespace sbus = std;
 class SbusRx {
  public:
   explicit SbusRx(HardwareSerial *bus);
+  ~SbusRx();
   void Begin();
+  void End();
   bool Read();
   sbus::array<uint16_t, 16> rx_channels();
   inline bool failsafe() const {return failsafe_;}
@@ -76,7 +78,9 @@ class SbusRx {
 class SbusTx {
  public:
   explicit SbusTx(HardwareSerial *bus);
+  ~SbusTx();
   void Begin();
+  void End();
   void Write();
   void failsafe(bool val) {failsafe_ = val;}
   void lost_frame(bool val) {lost_frame_ = val;}

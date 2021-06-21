@@ -29,6 +29,17 @@
 SbusRx::SbusRx(HardwareSerial *bus) {
   bus_ = bus;
 }
+
+void SbusRx::End()
+{
+  bus_->end();
+}
+SbusRx::~SbusRx()
+{
+  End();
+  bus_ = NULL;
+}
+
 void SbusRx::Begin() {
   parser_state_ = 0;
   previous_byte_ = SBUS_FOOTER_;
@@ -140,6 +151,17 @@ namespace {
 SbusTx::SbusTx(HardwareSerial *bus) {
   bus_ = bus;
 }
+
+void SbusTx::End()
+{
+  bus_->end();
+}
+SbusTx::~SbusTx()
+{
+  End();
+  bus_ = NULL;
+}
+
 void SbusTx::Begin() {
   /* Teensy 3.0 || Teensy 3.1/3.2 */
   #if defined(__MK20DX128__) || defined(__MK20DX256__)
